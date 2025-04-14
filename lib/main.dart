@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget
 
 class MyHomePage extends StatefulWidget
 {
-
   const MyHomePage({super.key, required this.title});
   final String title;
 
@@ -42,7 +41,17 @@ class _MyHomePageState extends State<MyHomePage>
         title: Text(widget.title),
         centerTitle: true,
       ),
-      // body:
+      body: 
+      Center(
+        child: SizedBox(
+          width: 250,
+          child: TextField(
+            obscureText: false,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Enter amount in €'),
+          ),
+        ),
+      ),
     );
   }
 }
