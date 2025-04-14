@@ -43,13 +43,28 @@ class _MyHomePageState extends State<MyHomePage>
       ),
       body: 
       Center(
-        child: SizedBox(
-          width: 250,
-          child: TextField(
-            obscureText: false,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Enter amount in €'),
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 250,
+              child: TextField(
+                obscureText: false,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Enter amount in €'),
+              ),
+            ),
+            SizedBox(height: 65),
+            SizedBox(
+              width: 250,
+              child: TextField(
+                obscureText: false,
+                readOnly: true,
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Which is'),
+              ),
+            ),
+          ],
         ),
       ),
     );
