@@ -1,16 +1,13 @@
 # my_flutter_currency_app
+## Description
+This is a simple currency converter application that allows users to convert amounts between different currencies. The app fetches real-time exchange rates and provides an intuitive interface for users to input their desired amount and select the currencies for conversion.
 
-A new Flutter project.
-
+## Features
+- User-friendly interface for currency conversion
+- Real-time exchange rates fetched from an external API
+- Input fields for amount and currency selection
+- Responsive design for various screen sizes
 ## Getting Started
 
 This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+I need to study dart, in order to succeed my intership
