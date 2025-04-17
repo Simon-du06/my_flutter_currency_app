@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main()
 {
@@ -32,6 +33,15 @@ class MyHomePage extends StatefulWidget
 
 class _MyHomePageState extends State<MyHomePage>
 {
+  late final TextEditingController _amountController;
+  late final TextEditingController _resultController;
+
+ @override
+  void initState() {
+    super.initState();
+    _amountController = TextEditingController(text: '');
+    _resultController = TextEditingController(text: '');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,20 +59,28 @@ class _MyHomePageState extends State<MyHomePage>
             SizedBox(
               width: 250,
               child: TextField(
+                controller: _amountController,
                 obscureText: false,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Enter amount in €'),
+                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))), labelText: 'Enter amount in €'),
+                onChanged: (value) {
+                  _resultController.text = value;
+                }
               ),
             ),
             SizedBox(height: 65),
             SizedBox(
               width: 250,
-              child: TextField(
-                obscureText: false,
-                readOnly: true,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Which is'),
-              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    flex: 1,
+                    child: TextField(readOnly: true, controller: _resultController,),
+                  ),
+                  SvgPicture.asset('assets/icons/Chevron.svg', height: 16, width: 16)
+                ],
+              )
             ),
           ],
         ),
