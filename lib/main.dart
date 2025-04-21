@@ -56,21 +56,39 @@ class _MyHomePageState extends State<MyHomePage>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              width: 250,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                border: Border.all( 
+                        color: const Color.fromRGBO(103, 110, 218, 1), 
+                        width: 2.0,
+                ),
+              ),
+              padding: EdgeInsets.fromLTRB(16, 34, 16, 34),
+              width: 395,
+              height: 108,
               child: TextField(
                 controller: _amountController,
                 obscureText: false,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(20))), labelText: 'Enter amount in €'),
+                decoration: InputDecoration(labelText: 'Enter amount in €'),
                 onChanged: (value) {
                   _resultController.text = value;
                 }
               ),
             ),
             SizedBox(height: 65),
-            SizedBox(
-              width: 250,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                border: Border.all( 
+                        color: Colors.black, 
+                        width: 2.0,
+                ),
+              ),
+              padding: EdgeInsets.fromLTRB(16, 34, 16, 34),
+              width: 395,
+              height: 108,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -78,7 +96,12 @@ class _MyHomePageState extends State<MyHomePage>
                     flex: 1,
                     child: TextField(readOnly: true, controller: _resultController,),
                   ),
-                  SvgPicture.asset('assets/icons/Chevron.svg', height: 16, width: 16)
+                  // DropdownButton(
+                  //   items: currencyList,
+                  //   onChanged: _setDestinationCurrency,
+                  //   icon: SvgPicture.asset('assets/icons/Chevron.svg'), //, height: 16, width: 16
+                  //   iconSize: 16,
+                  // ),
                 ],
               )
             ),
