@@ -71,7 +71,10 @@ class _MyHomePageState extends State<MyHomePage>
                 controller: _amountController,
                 obscureText: false,
                 keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Enter amount in €'),
+                decoration: InputDecoration(
+                  labelText: 'Enter amount in €',
+                  border: OutlineInputBorder(borderSide: BorderSide.none)
+                ),
                 onChanged: (value) {
                   _resultController.text = value;
                 }
@@ -82,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage>
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
                 border: Border.all( 
-                        color: Colors.black, 
+                        color: const Color.fromRGBO(206, 210, 218, 1), 
                         width: 2.0,
                 ),
               ),
@@ -94,7 +97,14 @@ class _MyHomePageState extends State<MyHomePage>
                 children: [
                   Flexible(
                     flex: 1,
-                    child: TextField(readOnly: true, controller: _resultController,),
+                    child: TextField(
+                      readOnly: true,
+                      controller: _resultController,
+                      decoration: InputDecoration(
+                        labelText: 'Which is',
+                        border: OutlineInputBorder(borderSide: BorderSide.none)
+                      ),
+                    ),
                   ),
                   // DropdownButton(
                   //   items: currencyList,
