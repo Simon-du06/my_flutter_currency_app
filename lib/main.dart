@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 void main()
@@ -33,14 +34,21 @@ class MyHomePage extends StatefulWidget
 
 class _MyHomePageState extends State<MyHomePage>
 {
-  late final TextEditingController _amountController;
-  late final TextEditingController _resultController;
+  late final TextEditingController _amount;
+  late final TextEditingController _result;
 
  @override
   void initState() {
+    _amount = TextEditingController(text: '');
+    _result = TextEditingController(text: '');
     super.initState();
-    _amountController = TextEditingController(text: '');
-    _resultController = TextEditingController(text: '');
+  }
+
+  @override
+  void dispose() {
+    _amount.dispose();
+    _result.dispose();
+    super.dispose();
   }
 
   @override
@@ -68,15 +76,19 @@ class _MyHomePageState extends State<MyHomePage>
               width: 395,
               height: 108,
               child: TextField(
-                controller: _amountController,
+                controller: _amount,
                 obscureText: false,
                 keyboardType: TextInputType.number,
+                style: GoogleFonts.lato(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 36
+                ),
                 decoration: InputDecoration(
-                  labelText: 'Enter amount in €',
+                  hintText: 'Enter amount in €',
                   border: OutlineInputBorder(borderSide: BorderSide.none)
                 ),
                 onChanged: (value) {
-                  _resultController.text = value;
+                  _result.text = value;
                 }
               ),
             ),
@@ -99,9 +111,13 @@ class _MyHomePageState extends State<MyHomePage>
                     flex: 1,
                     child: TextField(
                       readOnly: true,
-                      controller: _resultController,
+                      controller: _result,
+                      style: GoogleFonts.lato(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 36
+                      ),
                       decoration: InputDecoration(
-                        labelText: 'Which is',
+                        hintText: 'Which is',
                         border: OutlineInputBorder(borderSide: BorderSide.none)
                       ),
                     ),
