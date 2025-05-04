@@ -145,7 +145,8 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
           ),
-          _buildD),
+          // _buildDropRates(),
+          _buildSheet(),
         ],
       )
     );
@@ -160,7 +161,13 @@ class _MyHomePageState extends State<MyHomePage>
         .map<DropdownMenuItem<String>>(
           (currency) => DropdownMenuItem<String>(
             value: currency,
-            child: Text(currency),
+            child: Text(
+              currency,
+              style: GoogleFonts.lato(
+                fontWeight: FontWeight.bold,
+                fontSize: 16
+              ),
+            ),
           ),
         )
         .toList(),
@@ -171,6 +178,53 @@ class _MyHomePageState extends State<MyHomePage>
       },
       icon: SvgPicture.asset('assets/icons/Chevron.svg'), //, height: 16, width: 16
       iconSize: 16,
+    );
+  }
+  Widget _buildSheet() {
+    return IconButton(
+      icon: SvgPicture.asset('assets/icons/Chevron.svg'),
+      iconSize: 16,
+      onPressed: () {
+        showModalBottomSheet(
+          backgroundColor: Colors.white,
+          barrierColor: Color.fromRGBO(32, 37, 50, 0.8),
+          context: context,
+          builder: (context) {
+            final currencyList = _rates?["rates"]?.keys.toList() ?? [];
+            return Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 12, bottom: 8),
+                  child: Container(
+                    width: 60,
+                    height: 7,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[300],
+                      borderRadius: BorderRadius.circular(3.5),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: ListView(
+                    children: currencyList.map<Widget>((currency) {
+                      return ListTile(
+                        title: Text(currency, style: GoogleFonts.lato(fontWeight: FontWeight.bold, fontSize: 16)),
+                        onTap: () {
+                          setState(() {
+                            _selectedCurrency = currency;
+                            _result.text = (_rates?["rates"][_selectedCurrency] * int.parse(_amount.text)).toString();
+            
+                          Navigator.pop(context);
+                        },
+                      );
+                    }).toList(),
+                  ),
+                ),
+              ],
+            );
+          },
+        );
+      }
     );
   }
 }
