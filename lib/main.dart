@@ -213,7 +213,7 @@ class _MyHomePageState extends State<MyHomePage>
                           setState(() {
                             _selectedCurrency = currency;
                             _result.text = (_rates?["rates"][_selectedCurrency] * int.parse(_amount.text)).toString();
-            
+                          });
                           Navigator.pop(context);
                         },
                       );
