@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage>
                 width: 2.0,
         ),
       ),
-      padding: EdgeInsets.fromLTRB(16, 34, 16, 34),
+      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
       width: 395,
       height: 108,
       child: TextField(
@@ -109,7 +109,8 @@ class _MyHomePageState extends State<MyHomePage>
           border: OutlineInputBorder(borderSide: BorderSide.none)
         ),
         onChanged: (value) {
-          _result.text = (_rates?["rates"][_selectedCurrency] * int.parse(value)).toString();
+            final amount = double.tryParse(value) ?? 0.0;
+            _result.text = (amount * _rates?["rates"][_selectedCurrency]).toStringAsFixed(2);
         }
       ),
     );
@@ -124,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage>
                 width: 2.0,
         ),
       ),
-      padding: EdgeInsets.fromLTRB(16, 34, 16, 34),
+      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
       width: 395,
       height: 108,
       child: Row(
@@ -145,41 +146,22 @@ class _MyHomePageState extends State<MyHomePage>
               ),
             ),
           ),
-          // _buildDropRates(),
+          _buildConvertionText(_selectedCurrency),
           _buildSheet(),
         ],
       )
     );
   }
 
-  Widget _buildDropRates() {
-    final currencyList = _rates?["rates"]?.keys.toList() ?? [];
-  
-    return DropdownButton(
-      value: _selectedCurrency,
-      items: currencyList
-        .map<DropdownMenuItem<String>>(
-          (currency) => DropdownMenuItem<String>(
-            value: currency,
-            child: Text(
-              currency,
-              style: GoogleFonts.lato(
-                fontWeight: FontWeight.bold,
-                fontSize: 16
-              ),
-            ),
-          ),
-        )
-        .toList(),
-      onChanged: (value) {
-        setState(() {
-          _selectedCurrency = value as String;
-        });
-      },
-      icon: SvgPicture.asset('assets/icons/Chevron.svg'), //, height: 16, width: 16
-      iconSize: 16,
+  Widget _buildConvertionText(String selectedText) {
+    return Text(
+      selectedText,
+      style: GoogleFonts.lato(
+      fontWeight: FontWeight.bold,
+      fontSize: 16)
     );
   }
+
   Widget _buildSheet() {
     return IconButton(
       icon: SvgPicture.asset('assets/icons/Chevron.svg'),
