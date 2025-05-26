@@ -15,11 +15,25 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'My Currency App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const MyHomePage(title: 'My Currency App'),
+      home: DefaultTabController(
+        length: 2, 
+        child: Scaffold(
+          appBar: AppBar(
+          bottom: TabBar(
+            tabs: [
+              Tab(icon: Image.asset('assets/icons/currency.png')),
+              Tab(icon: SvgPicture.asset('assets/icons/graphic.svg')),
+            ],
+          ),
+        ),
+        body: const TabBarView(
+            children: [
+              MyHomePage(title: 'My Currency App'),
+              Icon(Icons.directions_bike),
+            ],
+          ),
+        )
+      )
     );
   }
 }
