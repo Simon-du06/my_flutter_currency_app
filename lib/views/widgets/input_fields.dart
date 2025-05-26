@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AmountInputField extends StatelessWidget {
@@ -93,7 +94,7 @@ class ResultField extends StatelessWidget {
             )
           ),
           IconButton(
-            icon: Icon(Icons.expand_more),
+            icon: SvgPicture.asset('assets/icons/Chevron.svg'),
             iconSize: 16,
             onPressed: onCurrencyTap,
           ),

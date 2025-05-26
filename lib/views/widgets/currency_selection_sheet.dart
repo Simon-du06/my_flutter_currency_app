@@ -20,7 +20,6 @@ class CurrencySelectionSheet extends StatelessWidget {
       ),
       child: Column(
         children: [
-          // Drag indicator
           Padding(
             padding: EdgeInsets.only(top: 12, bottom: 8),
             child: Container(
@@ -32,7 +31,6 @@ class CurrencySelectionSheet extends StatelessWidget {
               ),
             ),
           ),
-          // Currency list
           Expanded(
             child: ListView(
               children: currencyList.map<Widget>((currency) {

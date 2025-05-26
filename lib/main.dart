@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_flutter_currency_app/views/tabs/currency_converter_page.dart';
 import 'package:my_flutter_currency_app/views/tabs/graph_page.dart';
 
@@ -37,6 +36,8 @@ class _MyAppState extends State<MyApp> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: const Color(0xFF676EDA),
+        unselectedItemColor: const Color(0xFF8292B3),
         onTap: (index) {
           setState(() {
             _currentIndex = index;
@@ -44,8 +45,8 @@ class _MyAppState extends State<MyApp> {
         },
         currentIndex: _currentIndex,
         items: [
-          BottomNavigationBarItem(icon: Image.asset('assets/icons/currency.png', height: 40), label: 'Exhange'),
-          BottomNavigationBarItem(icon: SvgPicture.asset('assets/icons/graphic.svg', height: 35), label: 'Graph'),
+          BottomNavigationBarItem(icon: Image.asset('assets/icons/currency.png', height: 45, color: _currentIndex == 0 ? Color(0xFF676EDA) : Color(0xFF8292B3)), label: 'Exhange'),
+          BottomNavigationBarItem(icon: Icon(Icons.show_chart, size: 45), label: 'Graph'),
         ],
       ),
     );

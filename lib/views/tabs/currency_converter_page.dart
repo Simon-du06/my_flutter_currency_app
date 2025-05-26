@@ -60,7 +60,6 @@ class _MyHomePageState extends State<MyHomePage>
       onCurrencySelected: (currency) {
         setState(() {
           _selectedCurrency = currency;
-          // Recalcule avec la nouvelle devise
           if (_amount.text.isNotEmpty) {
             _onAmountChanged(_amount.text);
           }
