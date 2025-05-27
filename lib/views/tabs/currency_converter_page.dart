@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage>
     }
   }
 
-  void _onCurrencyTap() {
+  void _onCurrencyTap(String currencyType) {
     if (_rates == null) return;
     
     final currencyList = _rates!["rates"]?.keys.toList().cast<String>() ?? [];
@@ -60,7 +60,11 @@ class _MyHomePageState extends State<MyHomePage>
       currencyList: currencyList,
       onCurrencySelected: (currency) {
         setState(() {
-          _selectedCurrency = currency;
+          if (currencyType == "base") {
+            _baseCurrency = currency;
+          } else {
+            _selectedCurrency = currency;
+          }
           if (_amount.text.isNotEmpty) {
             _onAmountChanged(_amount.text);
           }
@@ -84,13 +88,13 @@ class _MyHomePageState extends State<MyHomePage>
               controller: _amount,
               baseCurrency: _baseCurrency,
               onChanged: _onAmountChanged,
-              onCurrencyTap: _onCurrencyTap,
+              onCurrencyTap: () => _onCurrencyTap("base"),
             ),
             SizedBox(height: 65),
             ResultField(
               controller: _result,
               selectedCurrency: _selectedCurrency,
-              onCurrencyTap: _onCurrencyTap,
+              onCurrencyTap: () => _onCurrencyTap("target"),
             ),
           ],
         ),
