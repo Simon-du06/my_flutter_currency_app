@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:my_flutter_currency_app/views/widgets/input_fields.dart';
 import 'package:my_flutter_currency_app/views/widgets/currency_selection_sheet.dart';
@@ -77,6 +78,16 @@ class _MyHomePageState extends State<MyHomePage>
     );
   }
 
+  void _swapCurrencies() {
+    String temp = _baseCurrency;
+    _baseCurrency = _selectedCurrency;
+    _selectedCurrency = temp;
+    
+    _amount.text = _result.text;
+    
+    _loadRates(_baseCurrency);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +105,12 @@ class _MyHomePageState extends State<MyHomePage>
               onChanged: _onAmountChanged,
               onCurrencyTap: () => _onCurrencyTap("base"),
             ),
-            SizedBox(height: 65),
+            SizedBox(height: 13),
+            GestureDetector(
+              onTap: _swapCurrencies,
+              child: SvgPicture.asset("assets/icons/switch.svg"),
+            ),
+            SizedBox(height: 13),
             ResultField(
               controller: _result,
               selectedCurrency: _selectedCurrency,
