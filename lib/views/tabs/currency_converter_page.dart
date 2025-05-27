@@ -21,11 +21,14 @@ class _MyHomePageState extends State<MyHomePage>
   String _selectedCurrency = "USD";
   String _baseCurrency = "EUR";
 
-  void _loadRates() async {
-    final data = await fetchExchangeRates();
+  void _loadRates(String base) async {
+    final data = await fetchExchangeRates(base);
     setState(() {
       _rates = data;
     });
+    if (_amount.text.isNotEmpty) {
+    _onAmountChanged(_amount.text);
+    }
   }
 
   @override
@@ -33,7 +36,7 @@ class _MyHomePageState extends State<MyHomePage>
     super.initState();
     _amount = TextEditingController(text: '');
     _result = TextEditingController(text: '');
-    _loadRates();
+    _loadRates(_baseCurrency);
   }
 
   @override
@@ -62,6 +65,7 @@ class _MyHomePageState extends State<MyHomePage>
         setState(() {
           if (currencyType == "base") {
             _baseCurrency = currency;
+            _loadRates(_baseCurrency);
           } else {
             _selectedCurrency = currency;
           }

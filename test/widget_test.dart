@@ -10,7 +10,7 @@ import 'package:my_flutter_currency_app/services/currency_api.dart';
 
 void main() {
   test('fetchExchangeRates returns a map with rates', () async {
-    final result = await fetchExchangeRates();
+    final result = await fetchExchangeRates("EUR");
     expect(result, isA<Map<String, dynamic>>());
     expect(result.containsKey('rates'), true);
   });
