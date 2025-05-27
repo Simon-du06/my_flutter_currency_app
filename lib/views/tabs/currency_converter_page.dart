@@ -19,6 +19,7 @@ class _MyHomePageState extends State<MyHomePage>
   late final TextEditingController _result;
   Map<String, dynamic>? _rates;
   String _selectedCurrency = "USD";
+  String _baseCurrency = "EUR";
 
   void _loadRates() async {
     final data = await fetchExchangeRates();
@@ -81,7 +82,9 @@ class _MyHomePageState extends State<MyHomePage>
           children: [
             AmountInputField(
               controller: _amount,
+              baseCurrency: _baseCurrency,
               onChanged: _onAmountChanged,
+              onCurrencyTap: _onCurrencyTap,
             ),
             SizedBox(height: 65),
             ResultField(

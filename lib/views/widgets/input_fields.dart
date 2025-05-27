@@ -6,11 +6,15 @@ class AmountInputField extends StatelessWidget {
   const AmountInputField({
     super.key,
     required this.controller,
+    required this.baseCurrency,
     this.onChanged,
+    this.onCurrencyTap,
   });
 
   final TextEditingController controller;
+  final String baseCurrency;
   final Function(String)? onChanged;
+  final VoidCallback? onCurrencyTap;
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +29,38 @@ class AmountInputField extends StatelessWidget {
       padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
       width: 395,
       height: 108,
-      child: TextField(
-        controller: controller,
-        obscureText: false,
-        keyboardType: TextInputType.number,
-        style: GoogleFonts.lato(
-          fontWeight: FontWeight.bold,
-          fontSize: 36
-        ),
-        decoration: InputDecoration(
-          hintText: 'Enter amount in €',
-          border: OutlineInputBorder(borderSide: BorderSide.none)
-        ),
-        onChanged: onChanged,
+      child: Row(
+        children: [
+            Flexible(
+            flex: 1,
+            child: TextField(
+              controller: controller,
+              obscureText: false,
+              keyboardType: TextInputType.number,
+              style: GoogleFonts.lato(
+                fontWeight: FontWeight.bold,
+                fontSize: 36
+              ),
+              decoration: InputDecoration(
+                hintText: 'Enter amount',
+                border: OutlineInputBorder(borderSide: BorderSide.none)
+              ),
+              onChanged: onChanged,
+            ),
+          ),
+          Text(
+            baseCurrency,
+            style: GoogleFonts.lato(
+              fontWeight: FontWeight.bold,
+              fontSize: 16
+            )
+          ),
+          IconButton(
+            icon: SvgPicture.asset('assets/icons/Chevron.svg'),
+            iconSize: 16,
+            onPressed: onCurrencyTap,
+          ),
+        ],
       ),
     );
   }
@@ -65,7 +88,7 @@ class ResultField extends StatelessWidget {
                 width: 2.0,
         ),
       ),
-      padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
+      padding: EdgeInsets.fromLTRB(10, 5, 10, 4),
       width: 395,
       height: 108,
       child: Row(
