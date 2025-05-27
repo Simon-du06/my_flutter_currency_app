@@ -19,9 +19,13 @@ Future<Map<String, dynamic>> fetchExchangeRates(String base) async {
   }
 }
 
-Future<Map<String, dynamic>> fetchHistoricalsRates(String from, String to) async {
+Future<Map<String, dynamic>> fetchHistoricalsRates({
+  required String from, 
+  required String to, 
+  String since = '2025-01-01'
+}) async {
   final response = await http.get(
-    Uri.parse('https://api.frankfurter.dev/v1/2024-01-01..?base=$from&symbols=$to'),
+    Uri.parse('https://api.frankfurter.dev/v1/$since..?base=$from&symbols=$to'),
   );
   
   if (response.statusCode == 200) {
