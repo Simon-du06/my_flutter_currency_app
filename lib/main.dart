@@ -19,7 +19,7 @@ class _MyAppState extends State<MyApp> {
   int _currentIndex = 0;
   final List <Widget> _pages = [
     MyHomePage(title: 'Currency Exchange'),
-    GraphPage(title: 'Graph Page'),
+    GraphPage(title: 'Historical rates'),
   ];
 
   @override
