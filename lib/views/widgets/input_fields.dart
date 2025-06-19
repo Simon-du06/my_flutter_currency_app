@@ -27,7 +27,7 @@ class AmountInputField extends StatelessWidget {
         ),
       ),
       padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
-      width: 395,
+      width: MediaQuery.of(context).size.width * 0.9,
       height: 108,
       child: Row(
         children: [
